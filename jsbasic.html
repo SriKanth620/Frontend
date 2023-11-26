@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button{
+            padding: 7px 13px;
+            background-color: black;
+            color: aliceblue;
+            border-radius: 3px;
+        }
+        button:active{
+            box-shadow: 3px 4px 2px rgb(48, 47, 47);
+        }
+        input{
+            padding: 7px;
+            width: 220px;
+            background-color: rgb(31, 31, 31);
+            color: white;
+        }
+        #btn-bg{
+            color: rgb(204, 204, 245);
+        }
+        body{
+            margin: 30px;
+            text-align: center;
+            background-color: aliceblue;
+        }
+        .h1{
+            font-family: sans-serif;
+            font-size: 40px;
+            color: rgb(60, 56, 56);
+        }
+        h1{
+            font-family: sans-serif;
+        }
+        h3{
+            background-color: rgb(137, 134, 130);
+            padding: 20px 40px;
+            border-radius: 15px;
+            color: rgb(193, 200, 206);
+            font-size: 40px;
+            margin: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dynamic Webpage</h1>
+   <h1 class="h1">Hello <span>User</span>!</h1>
+   <form>
+    <input type="text" id="username" placeholder="Greeting!">
+    <button type="submit" id="btn-username">Update</button>
+   </form>
+   <h3 id="d">Click Below For Date</h3>
+   <button id="btn-date">Get Date</button> <br><br><br>
+   <button id="btn-bg">Change Background</button>
+   <script>
+
+    const btnuser= document.getElementById("btn-username");
+    btnuser.addEventListener("click", changeName);
+    function changeName(e){
+        e.preventDefault();
+        let userinp= document.getElementById("username");
+        let user= document.querySelector("span")
+        user.textContent= userinp.value;
+        userinp.value=' ';
+    }
+    const btndate= document.getElementById("btn-date") 
+    btndate.addEventListener("click", changeDate);
+    function changeDate(){
+        let date = document.getElementById("d");
+        let now = new Date()
+        d.textContent= now;
+    }
+    const btnbg= document.getElementById("btn-bg");
+    const body= document.querySelector("body");
+    btnbg.addEventListener("click", changeBg);
+    function changeBg(){
+        let syb="1234567890ABCDEF";
+        let color="#";
+        for(let i=0; i<6; i++){
+            color=color+ syb[Math.floor(Math.random()*15)];
+            
+        }
+        console.log(color);
+        body.style.backgroundColor=color;
+
+    }
+   </script>
+</body>
+</html>
