@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{
+            padding: 10px;
+            width: 20rem;
+        }
+        div{
+            background-color: rgb(196, 201, 201);
+            border-radius: 5px;
+            width: 400px
+        }
+        form{
+            padding:2rem;
+        }
+        button{
+            padding: 10px;
+            width: 102%;
+            background-color: rgb(196, 201, 201);
+            border: 1px grey solid;
+
+        }
+        button:hover{
+            border: 2px solid black;
+        }
+        p{
+            text-align: left;
+            margin: 0%;
+            padding: 0%;
+            color:red;
+            font-size: 9px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Form Validation</h1>
+        <div>
+            <form action="./success.html">
+                <input type="text" placeholder="Name" id="name" >
+                 <p id="p-name"></p> <br>
+                <input type="text" placeholder="Mobile" id="mobile" >
+                <p id="p-mobile"></p> <br>
+                <input type="email" placeholder="Email" id="email" >
+                <p id="p-email"></p> <br>
+                <input type="password" placeholder="Password"id="ps1" > 
+                <p id="p-ps"></p> <br>
+                <input type="password" placeholder="Confirm Password" id="ps2" >
+                <p id="p-ps"></p> <br>
+                <button type="submit" >Submit</button>
+            </form>
+        </div>
+    </center>
+    <script>
+         const btn= document.querySelector("button")
+         btn.addEventListener("click",(e)=>{
+            
+             const name= document.getElementById("name");
+            const mobile= document.getElementById("mobile");
+            const email= document.getElementById("email");
+            const ps1= document.getElementById("ps1");
+            const ps2= document.getElementById("ps2");
+            let mail=/^([a-z\d]+)@([a-z]{2,9}).([a-z]{2,10})$/;
+            let num= /^[\d]{10}$/;
+            let pname= document.getElementById("p-name");
+            let pps= document.getElementById("p-ps");
+            let pmob= document.getElementById("p-mobile");
+
+            if(name.value==""){
+                pname.innerText="Invalid Name";
+                e.preventDefault();
+            }
+            else{
+                pname.innerText="";
+            }
+            if(mobile.value==""){
+                pmob.innerText="Empty Mobile";
+                e.preventDefault();
+            }
+            else{
+                pmob.innerText="";
+            }
+            if(email.value==""){
+                pemail.innerText="Empty Email";
+                e.preventDefault();
+            }
+            else{
+                pemail.innerText="";
+            }
+            if(ps1.value==""){
+                pps.innerText="Empty password";
+                e.preventDefault();
+            }
+            else{
+                pps.innerText="";
+            }
+            if(ps1.value!==ps2.value){
+                e.preventDefault();
+                pps.innerText="password should be same!"
+         }
+            if(!num.test(mobile.value)){
+                pmob.innerText="Invalid Mobile Number";
+                e.preventDefault();
+            }
+            else{
+                pmob.innerText="";
+            } 
+         })
+         const mobile= document.getElementById("mobile");
+         let pmob= document.getElementById("p-mobile");
+         let num= /^[\d]{10}$/;
+         mobile.addEventListener("input",(e)=>{
+            if(!num.test(mobile.value)){
+                pmob.innerText="Invalid Mobile Number";
+                e.preventDefault();
+            }
+            else{
+                pmob.innerText="";
+            }
+         })
+         let mail=/^([a-z\d]+)@([a-z]{2,9}).([a-z]{2,10})$/;
+         const email= document.getElementById("email");
+         let pemail= document.getElementById("p-email");
+         email.addEventListener("input", (e)=>{
+            if(!mail.test(email.value)){
+                e.preventDefault();
+                pemail.innerText="Invalid Email";
+                
+            }
+            else{
+                    pemail.innerText="";
+                }
+         })
+         const ps1= document.getElementById("ps1");
+         const ps2= document.getElementById("ps2");
+         let pps= document.getElementById("p-ps");
+         ps2.addEventListener("input", (e)=>{
+            if(ps1.value!==ps2.value){
+                e.preventDefault();
+            pps.innerText="password should be same!"
+         }
+         else{
+            pps.innerText="";
+        }
+
+         })
+         ps1.addEventListener("input", (e)=>{
+         if(ps1.value.length<8){
+               e.preventDefault();
+                pps.innerText="password length should be greater than 8characters";
+         }
+         else if(ps1.value.length>16){
+               e.preventDefault();
+                pps.innerText="password length should be less than 16characters";
+                e.preventDefault();
+         }
+         else{
+            pps.innerText="";
+        }
+        
+         })
+    
+    </script>
+</body>
+</html>
