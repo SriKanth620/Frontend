@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+<title>Registration Form</title>
+<style>
+    body{
+        font-family: sans-serif;
+    }
+    .container {
+text-align: center;
+margin: 20px;
+}
+h1 {
+color: #333;
+}
+#form-content { 
+    display: block;
+     width: 300px; 
+     margin: 0 auto;
+}
+input {
+margin: 10px 0; 
+padding: 7px;
+ width: 100%;
+}
+button {
+background-color: #007BFF; 
+color: white;
+ border: none;
+ padding: 10px;
+  cursor: pointer; 
+  margin-top: 10px;
+  width: 313px;
+}
+button:hover {
+background-color: #0056b3;
+}
+h1{
+
+    font-size: 45px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>User Registration</h1>
+<form id="registration-form">
+<div id="form-content">
+<!-- Input fields go here -->
+<input type="text" id="username" placeholder="Username" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="password" id="password" placeholder="Password" required>
+<button id="submit-button">Submit</button>
+</div>
+</form>
+</div>
+<script>
+    // const form = document.getElementById('registration-form'); 
+    const formContent = document.getElementById('form-content');
+    const submitButton = document.getElementById('submit-button');
+ submitButton.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            simulateRegistration()
+                    .then(function(){
+                            formContent.innerHTML = '<p>Registration Successful!</p>';
+                    })
+
+                    .catch(function(error) {
+
+                            formContent.innerHTML = '<p>Registration Failed. Please try again.</p>'; })
+                    })
+
+            function simulateRegistration() {
+// Simulate a registration process with a delay (e.g., an API request) 
+                     return new Promise(function (resolve, reject) {
+
+                setTimeout(()=>{
+                      const success = Math.random() < 0.7; // Simulate success or failure 
+                      if(success) {
+                            resolve()
+                      } else {
+                             reject()
+                      }
+                    },2000)
+                })
+            }
+                 
+                           
+
+</script>
+</body>
+</html>
