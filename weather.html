@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+  <style>
+    body{
+        margin: 50px;
+        font-family: sans-serif;
+        background-color: rgb(70, 85, 95);
+        color: aliceblue;
+    }
+    h1{
+        color: rgb(168, 186, 245);
+        font-size: 35px;
+    }
+    input{
+        padding: 7px;
+        width: 270px;
+        border: 2px solid gray;
+        border-radius: 6px;
+    }
+    button{
+        padding: 7px;
+        border: 2px solid gray;
+        border-radius: 5px;
+    }
+    #weather-info{
+        font-size: 29px;
+    }
+    b{
+        font-size: 30px;
+    }
+    h4{
+        color: brown;
+    }
+  </style>
+</head>
+<body>
+  <h1>Weather Application</h1>
+  <input type="text" name="location" id="location" placeholder="City">
+  <button type="submit">Search</button>
+  <div id="weather-info">
+    
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
+ 
+ <script >
+const btn= document.querySelector("button");
+btn.addEventListener("click", ()=>{
+
+
+  const apiKey = '1db4b28e59424324bf9174304232611'; // Replace 'YOUR_API_KEY' with your actual API key
+//   const city = 'guduvancheri'; // Replace with the desired city name
+  const city= document.getElementById("location").value;
+  const info= document.getElementById("weather-info");
+  const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no`;
+  
+ 
+
+
+  $.ajax({
+    url: url,
+    type: 'GET',
+    success: function(response) {
+      displayWeatherInfo(response);
+      console.log(response)
+    },
+    error: function(error) {
+      console.log('Error fetching weather data:', error);
+      info.innerHTML="<h4>Enter a valid City name!</h4>"
+
+    }
+  });
+
+  function displayWeatherInfo(data) {
+    const weatherInfo = `
+      <p><b>Location: </b>${data.location.name}, ${data.location.country}</p>
+      <p><b>Temperature:</b> ${data.current.temp_c}°C</p>
+      <p><b>Condition: </b>${data.current.condition.text}</p>
+      <p><b>Humidity:</b> ${data.current.humidity}%</p>
+      <p><b>Wind Speed:</b> ${data.current.wind_kph} kph</p>
+    `;
+    
+    $('#weather-info').html(weatherInfo);
+  }
+});
+
+
+  </script>
+</body>
+</html>
