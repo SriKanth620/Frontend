@@ -1,0 +1,10 @@
+<div class="container">
+  <input  type="text" #task>
+  <input  type="text" #des>
+  <button type="submit" (click)="validate(task.value, des.value)">+</button>
+  <div class="task">
+    <ul *ngFor="let item of list">
+      <li>{{item.name}}     {{item.detail}}<button (click)="deleteTask(item.id)">Delete</button></li>
+    </ul>
+  </div>
+</div>
